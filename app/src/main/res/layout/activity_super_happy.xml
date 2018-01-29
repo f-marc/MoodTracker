@@ -4,18 +4,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fleury.marc.moodtracker.DisappointedActivity"
-    android:background="@color/warm_grey">
+    tools:context="com.fleury.marc.moodtracker.SuperHappyActivity"
+    android:background="@color/banana_yellow">
 
     <ImageView
-        android:id="@+id/activity_disappointed_view"
-        android:src="@drawable/smiley_disappointed"
+        android:src="@drawable/smiley_super_happy"
+        android:id="@+id/activity_supper_happy_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="80dp"/>
 
     <ImageView
-        android:id="@+id/activity_disappointed_hist"
+        android:id="@+id/activity_super_happy_hist"
         android:src="@drawable/ic_history_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
 
 
     <ImageView
-        android:id="@+id/activity_disappointed_com"
+        android:id="@+id/activity_super_happy_com"
         android:src="@drawable/ic_note_add_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
