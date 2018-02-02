@@ -4,15 +4,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fleury.marc.moodtracker.HappyActivity"
+    tools:context="com.fleury.marc.moodtracker.controller.HappyActivity"
     android:background="@color/light_sage">
 
     <ImageView
         android:id="@+id/activity_happy_view"
         android:src="@drawable/smiley_happy"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="80dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
 
     <ImageView
         android:id="@+id/activity_happy_hist"
@@ -20,7 +20,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="15dp"/>
 
@@ -31,7 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="15dp"/>
 

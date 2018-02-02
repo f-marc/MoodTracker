@@ -5,58 +5,59 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fleury.marc.moodtracker.HistoryActivity"
-    android:background="@color/warm_grey">
+    tools:context="com.fleury.marc.moodtracker.controller.HistoryActivity"
+    android:background="@color/warm_grey"
+    android:weightSum="7">
+
 
     <RelativeLayout
+        android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:background="@color/banana_yellow">
          <TextView
              android:id="@+id/activity_history_seven"
              android:layout_width="match_parent"
-             android:layout_height="81dp"
+             android:layout_height="wrap_content"
              android:gravity="top"
              android:paddingLeft="5dp"
              android:paddingRight="5dp"
              android:paddingTop="5dp"
-             android:text="@string/history_seven"
-             android:background="@color/banana_yellow"/>
+             android:text="@string/history_seven"/>
          <ImageView
              android:id="@+id/activity_history_com_seven"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_alignEnd="@id/activity_history_seven"
-             android:layout_alignRight="@+id/activity_history_seven"
              android:layout_centerVertical="true"
              android:layout_marginEnd="20dp"
-             android:layout_marginRight="20dp"
              android:src="@drawable/ic_comment_black_48px"
              android:visibility="gone"
              tools:visibility="visible"/>
     </RelativeLayout>
 
+
     <RelativeLayout
+        android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:background="@color/faded_red">
         <TextView
             android:id="@+id/activity_history_six"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="wrap_content"
             android:gravity="top"
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_six"
-            android:background="@color/faded_red"/>
+            android:text="@string/history_six"/>
         <ImageView
             android:id="@+id/activity_history_com_six"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@id/activity_history_six"
-            android:layout_alignRight="@+id/activity_history_six"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/ic_comment_black_48px"
             android:visibility="gone"
             tools:visibility="visible"/>
@@ -64,12 +65,13 @@
 
 
     <RelativeLayout
+        android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
         <TextView
             android:id="@+id/activity_history_five"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="wrap_content"
             android:gravity="top"
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
@@ -80,10 +82,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@id/activity_history_five"
-            android:layout_alignRight="@+id/activity_history_five"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/ic_comment_black_48px"
             android:visibility="gone"
             tools:visibility="visible"/>
@@ -92,11 +92,12 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
         <TextView
             android:id="@+id/activity_history_four"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="wrap_content"
             android:gravity="top"
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
@@ -107,22 +108,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@id/activity_history_four"
-            android:layout_alignRight="@+id/activity_history_four"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/ic_comment_black_48px"
             android:visibility="gone"
             tools:visibility="visible"/>
     </RelativeLayout>
 
+
     <RelativeLayout
+        android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
         <TextView
             android:id="@+id/activity_history_three"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="wrap_content"
             android:gravity="top"
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
@@ -133,22 +134,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@id/activity_history_three"
-            android:layout_alignRight="@+id/activity_history_three"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/ic_comment_black_48px"
             android:visibility="gone"
             tools:visibility="visible"/>
     </RelativeLayout>
 
     <RelativeLayout
+        android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
         <TextView
             android:id="@+id/activity_history_two"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="wrap_content"
             android:gravity="top"
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
@@ -159,10 +159,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@id/activity_history_two"
-            android:layout_alignRight="@+id/activity_history_two"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/ic_comment_black_48px"
             android:visibility="gone"
             tools:visibility="visible"/>
@@ -170,12 +168,13 @@
 
 
     <RelativeLayout
+        android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
         <TextView
             android:id="@+id/activity_history_one"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="top"
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
@@ -186,13 +185,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@id/activity_history_one"
-            android:layout_alignRight="@+id/activity_history_one"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/ic_comment_black_48px"
             android:visibility="gone"
             tools:visibility="visible"/>
     </RelativeLayout>
+
 
 </LinearLayout>

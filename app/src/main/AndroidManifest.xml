@@ -9,13 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HappyActivity">
+        <activity android:name=".controller.HappyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".controller.SuperHappyActivity"/>
+        <activity android:name=".controller.NormalActivity"/>
+        <activity android:name=".controller.DisappointedActivity"/>
+        <activity android:name=".controller.SadActivity"/>
+        <activity android:name=".controller.HistoryActivity"/>
     </application>
 
 </manifest>
