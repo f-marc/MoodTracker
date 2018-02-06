@@ -8,6 +8,6 @@
     <string name="history_three">Il y a trois jours</string>
     <string name="history_two">Avant-hier</string>
     <string name="history_one">Hier</string>
-    <string name="comment"></string>
+    <string name="comment">Commentaire</string>
 
 </resources>

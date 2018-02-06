@@ -5,14 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.fleury.marc.moodtracker.R;
-
-/**
- * Created by Marc FLEURY on 29/01/2018.
- */
+import com.fleury.marc.moodtracker.model.Mood;
 
 public class HistoryActivity extends AppCompatActivity {
 
     TextView historyOne, historyTwo, historyThree, historyFour, historyFive, historySix, historySeven;
+    Mood mMood = new Mood();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +28,8 @@ public class HistoryActivity extends AppCompatActivity {
         //Pour modifier l'affichage en fonction des humeurs :
         //setBackgroundColor(int color)
         //setWidth(int)
+
+
 
 
 
