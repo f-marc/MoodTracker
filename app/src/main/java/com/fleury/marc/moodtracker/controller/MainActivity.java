@@ -1,6 +1,8 @@
 package com.fleury.marc.moodtracker.controller;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +11,6 @@ import android.widget.ImageView;
 
 import com.fleury.marc.moodtracker.R;
 import com.fleury.marc.moodtracker.model.Date;
-import com.fleury.marc.moodtracker.model.Mood;
 import com.fleury.marc.moodtracker.model.MoodEnum;
 import com.fleury.marc.moodtracker.view.MyDialogFragment;
 
@@ -19,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView mHistoryButton;
     private ImageView mComButton;
-    private Mood mMood = new Mood();
     private Date mDate;
+    private SharedPreferences mPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         nextDay();
 
-        mMood.setMood(MoodEnum.Sad.getMood()); //Sad = 0; Disappointed = 1; Normal = 2; Happy = 3; SuperHappy = 4;
+        mPreferences = getPreferences(MODE_PRIVATE);
+        mPreferences.edit().putInt("mood", MoodEnum.Happy.getMood()).apply(); //Sad = 0; Disappointed = 1; Normal = 2; Happy = 3; SuperHappy = 4;
 
         mHistoryButton = findViewById(R.id.activity_happy_hist);
         mComButton = findViewById(R.id.activity_happy_com);
