@@ -11,6 +11,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/activity_history_relative_seven"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -23,7 +24,10 @@
              android:paddingLeft="5dp"
              android:paddingRight="5dp"
              android:paddingTop="5dp"
-             android:text="@string/history_seven"/>
+             android:text="@string/history_seven"
+             android:visibility="gone"
+             tools:visibility="visible"
+             />
          <ImageView
              android:id="@+id/activity_history_com_seven"
              android:layout_width="wrap_content"
@@ -38,6 +42,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/activity_history_relative_six"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -50,7 +55,9 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_six"/>
+            android:text="@string/history_six"
+            android:visibility="gone"
+            tools:visibility="visible"/>
         <ImageView
             android:id="@+id/activity_history_com_six"
             android:layout_width="wrap_content"
@@ -65,6 +72,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/activity_history_relative_five"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="0dp">
@@ -76,7 +84,9 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_five"/>
+            android:text="@string/history_five"
+            android:visibility="gone"
+            tools:visibility="visible"/>
         <ImageView
             android:id="@+id/activity_history_com_five"
             android:layout_width="wrap_content"
@@ -91,6 +101,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/activity_history_relative_four"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -102,7 +113,9 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_four"/>
+            android:text="@string/history_four"
+            android:visibility="gone"
+            tools:visibility="visible"/>
         <ImageView
             android:id="@+id/activity_history_com_four"
             android:layout_width="wrap_content"
@@ -117,6 +130,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/activity_history_relative_three"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="0dp">
@@ -128,7 +142,9 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_three"/>
+            android:text="@string/history_three"
+            android:visibility="gone"
+            tools:visibility="visible"/>
         <ImageView
             android:id="@+id/activity_history_com_three"
             android:layout_width="wrap_content"
@@ -142,6 +158,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/activity_history_relative_two"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="0dp">
@@ -153,7 +170,9 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_two"/>
+            android:text="@string/history_two"
+            android:visibility="gone"
+            tools:visibility="visible"/>
         <ImageView
             android:id="@+id/activity_history_com_two"
             android:layout_width="wrap_content"
@@ -168,6 +187,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/activity_history_relative_one"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="0dp">
@@ -179,7 +199,9 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_one"/>
+            android:text="@string/history_one"
+            android:visibility="gone"
+            tools:visibility="visible"/>
         <ImageView
             android:id="@+id/activity_history_com_one"
             android:layout_width="wrap_content"

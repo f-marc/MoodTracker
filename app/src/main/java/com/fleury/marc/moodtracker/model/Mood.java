@@ -2,11 +2,6 @@ package com.fleury.marc.moodtracker.model;
 
 public class Mood {
 
-    // ON STOCK :
-    // - L'humeur du jour
-    // - Le potentiel commentaire
-    // A minuit on récupère ces infos puis on vide les variables
-
     private int mood;
     private String comment;
 
@@ -25,5 +20,4 @@ public class Mood {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
 }
