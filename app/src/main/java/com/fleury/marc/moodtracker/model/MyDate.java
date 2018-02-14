@@ -1,6 +1,6 @@
 package com.fleury.marc.moodtracker.model;
 
-public class Date {
+public class MyDate {
 
     private int mCurrentDate = 0;
     private int mDate = 0;

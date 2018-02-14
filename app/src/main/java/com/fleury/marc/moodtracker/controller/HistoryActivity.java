@@ -3,8 +3,10 @@ package com.fleury.marc.moodtracker.controller;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.fleury.marc.moodtracker.R;
 import com.fleury.marc.moodtracker.model.Mood;
@@ -43,36 +45,50 @@ public class HistoryActivity extends AppCompatActivity {
         comSix = findViewById(R.id.activity_history_com_six);
         comSeven = findViewById(R.id.activity_history_com_seven);
 
-        for(int i = 0; i < moodTable.size(); i++) {
-            switch(moodTable.get(i)){
-                case 0:
-                    relativeOne.setLayoutParams(new RelativeLayout.LayoutParams (((metrics.widthPixels * 20) / 100), 0));
-                    // setBackgroundColor(int color)
-                    // setWidth((metrics.widthPixels * 20) / 100)
-                    break;
-                case 1:
-                    relativeOne.setLayoutParams(new RelativeLayout.LayoutParams (((metrics.widthPixels * 40) / 100), 0));
-                    // setBackgroundColor(int color)
-                    // setWidth((metrics.widthPixels * 40) / 100)
-                    break;
-                case 2:
-                    relativeOne.setLayoutParams(new RelativeLayout.LayoutParams (((metrics.widthPixels * 60) / 100), 0));
-                    // setBackgroundColor(int color)
-                    // setWidth((metrics.widthPixels * 60) / 100)
-                    break;
-                case 3:
-                    relativeOne.setLayoutParams(new RelativeLayout.LayoutParams (((metrics.widthPixels * 80) / 100), 0));
-                    // setBackgroundColor(int color)
-                    // setWidth((metrics.widthPixels * 80) / 100)
-                    break;
-                case 4:
-                    relativeOne.setLayoutParams(new RelativeLayout.LayoutParams (metrics.widthPixels, 0));
-                    // setBackgroundColor(int color)
-                    // setWidth(metrics.widthPixels)
-                    break;
-            }
 
+
+        //for(int i = 0; i < moodTable.size(); i++) {}
+
+    }
+
+
+    private void updateLayout(RelativeLayout relativeLayout, int mood) {
+
+        switch(mood){
+            case 0:
+                relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams (((metrics.widthPixels * 20) / 100), 0));
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.faded_red));
+                break;
+            case 1:
+                relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams (((metrics.widthPixels * 40) / 100), 0));
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.warm_grey));
+                break;
+            case 2:
+                relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams (((metrics.widthPixels * 60) / 100), 0));
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.cornflower_blue_65));
+                break;
+            case 3:
+                relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams (((metrics.widthPixels * 80) / 100), 0));
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.light_sage));
+                break;
+            case 4:
+                relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams (metrics.widthPixels, 0));
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.banana_yellow));
+                break;
         }
+
+    }
+
+
+    private void clickComment(ImageView comButton, final String comString) {
+
+        comButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // User clicked the comment button
+                Toast.makeText(HistoryActivity.this, comString, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

@@ -9,5 +9,7 @@
     <string name="history_two">Avant-hier</string>
     <string name="history_one">Hier</string>
     <string name="comment">Commentaire</string>
+    <string name="positive_btn">VALIDER</string>
+    <string name="negative_btn">ANNULER</string>
 
 </resources>

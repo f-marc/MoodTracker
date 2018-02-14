@@ -1,6 +1,5 @@
 package com.fleury.marc.moodtracker.controller;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
@@ -10,8 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.fleury.marc.moodtracker.R;
-import com.fleury.marc.moodtracker.model.Date;
 import com.fleury.marc.moodtracker.model.MoodEnum;
+import com.fleury.marc.moodtracker.model.MyDate;
 import com.fleury.marc.moodtracker.view.MyDialogFragment;
 
 import java.util.Calendar;
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView mHistoryButton;
     private ImageView mComButton;
-    private Date mDate;
+    private MyDate mDate;
     private SharedPreferences mPreferences;
 
     @Override
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void nextDay() {
 
-        mDate = new Date();
+        mDate = new MyDate();
 
         if(mDate.getDate() == 0) {
             mDate.setDate(Calendar.DAY_OF_YEAR);
@@ -68,15 +67,15 @@ public class MainActivity extends AppCompatActivity {
             mDate.setCurrentDate(Calendar.DAY_OF_YEAR);
         }
 
-        if (mDate.getDate() < mDate.getCurrentDate()) { // Si on change de jour :
-            // On voie le mMood.getMood dans le Hashmap de l'HistoryActivity en position 0
-            // On stock le potentiel commentaire
-
-            // On vide les variables "mood" et "comment"
+        if (mDate.getDate() < mDate.getCurrentDate()) { // If it's next day :
+            // Sending out mPreferences.getInt("mood", 5) to the Hashmap of HistoryActivity on position 0
+            // Stocking the comment
+            mPreferences.edit().remove("mood").apply(); // Clearing variable "mood"
+            mPreferences.edit().remove("comment").apply(); // Clearing variable "comment"
             mDate.setDate(mDate.getCurrentDate());
         }
         else {
-            // On ne fait rien.
+            // Nothing
         }
     }
 

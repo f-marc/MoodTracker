@@ -29,7 +29,7 @@ public class MyDialogFragment extends DialogFragment {
 
         alertDialogBuilder
                 .setView(R.layout.fragment_dialog)
-                .setPositiveButton("VALIDER", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.positive_btn, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         EditText mEditText = ((AlertDialog) dialog).findViewById(R.id.fragment_dialog_edit);
@@ -38,7 +38,7 @@ public class MyDialogFragment extends DialogFragment {
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton("ANNULER", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.negative_btn, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
