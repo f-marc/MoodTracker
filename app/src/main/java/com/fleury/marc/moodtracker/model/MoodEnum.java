@@ -2,7 +2,7 @@ package com.fleury.marc.moodtracker.model;
 
 public enum MoodEnum {
 
-    Sad(0), Disappointed(1), Normal(2), Happy(3), SuperHappy(4);
+    SAD(0), DISAPPOINTED(1), NORMAL(2), HAPPY(3), SUPERHAPPY(4);
 
     private int mood;
 
