@@ -1,4 +1,3 @@
-
 package com.fleury.marc.moodtracker.view;
 
 import android.content.Intent;

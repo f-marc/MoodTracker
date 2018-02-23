@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.fleury.marc.moodtracker.controller.HistoryActivity"
-    android:background="@color/warm_grey"
+    android:background="@color/history"
     android:weightSum="7">
 
 
@@ -26,7 +26,8 @@
              android:paddingLeft="5dp"
              android:paddingRight="5dp"
              android:paddingTop="5dp"
-             android:text="@string/history_seven"/>
+             android:text="@string/history_seven"
+             android:textColor="@color/full_black"/>
          <ImageView
              android:id="@+id/activity_history_com_seven"
              android:layout_width="wrap_content"
@@ -56,7 +57,8 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_six"/>
+            android:text="@string/history_six"
+            android:textColor="@color/full_black"/>
         <ImageView
             android:id="@+id/activity_history_com_six"
             android:layout_width="wrap_content"
@@ -85,7 +87,8 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_five"/>
+            android:text="@string/history_five"
+            android:textColor="@color/full_black"/>
         <ImageView
             android:id="@+id/activity_history_com_five"
             android:layout_width="wrap_content"
@@ -114,7 +117,8 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_four"/>
+            android:text="@string/history_four"
+            android:textColor="@color/full_black"/>
         <ImageView
             android:id="@+id/activity_history_com_four"
             android:layout_width="wrap_content"
@@ -143,7 +147,8 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_three"/>
+            android:text="@string/history_three"
+            android:textColor="@color/full_black"/>
         <ImageView
             android:id="@+id/activity_history_com_three"
             android:layout_width="wrap_content"
@@ -171,7 +176,8 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_two"/>
+            android:text="@string/history_two"
+            android:textColor="@color/full_black"/>
         <ImageView
             android:id="@+id/activity_history_com_two"
             android:layout_width="wrap_content"
@@ -200,7 +206,8 @@
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/history_one"/>
+            android:text="@string/history_one"
+            android:textColor="@color/full_black"/>
         <ImageView
             android:id="@+id/activity_history_com_one"
             android:layout_width="wrap_content"

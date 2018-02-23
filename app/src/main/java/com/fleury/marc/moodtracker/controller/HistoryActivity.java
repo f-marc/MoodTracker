@@ -21,7 +21,7 @@ public class HistoryActivity extends AppCompatActivity {
     ImageView comOne, comTwo, comThree, comFour, comFive, comSix, comSeven;
     Mood mMood = new Mood();
     Map<Integer, Integer> moodTable = new HashMap<>(); // <Day's key, Mood's number>
-    RelativeLayout relativeList[] = {relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven};
+    RelativeLayout[] relativeList;
     //Map<Integer,  String> comTable = new HashMap<>(); // <Day's key, Comment>
 
 
@@ -31,12 +31,12 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         moodTable.put(0, 3);
-        moodTable.put(1, 4);
-        moodTable.put(2, 2);
-        moodTable.put(3, 1);
-        moodTable.put(4, 0);
-        moodTable.put(5, 3);
-        moodTable.put(6, 2);
+        moodTable.put(1, 0);
+        moodTable.put(2, 1);
+        moodTable.put(3, 4);
+        moodTable.put(4, 3);
+        moodTable.put(5, 2);
+        moodTable.put(6, 4);
 
         relativeOne = findViewById(R.id.activity_history_relative_one);
         relativeTwo = findViewById(R.id.activity_history_relative_two);
@@ -54,7 +54,9 @@ public class HistoryActivity extends AppCompatActivity {
         comSix = findViewById(R.id.activity_history_com_six);
         comSeven = findViewById(R.id.activity_history_com_seven);
 
-        for(int i = 0; i < moodTable.size(); i++) { // BUG ICI
+        relativeList = new RelativeLayout[]{relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven};
+
+        for(int i = 0; i < moodTable.size(); i++) {
             updateLayout(relativeList[i], moodTable.get(i));
         }
 
