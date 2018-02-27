@@ -1,5 +1,6 @@
 package com.fleury.marc.moodtracker.controller;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -10,33 +11,40 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.fleury.marc.moodtracker.R;
-import com.fleury.marc.moodtracker.model.Mood;
 
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Calendar;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    RelativeLayout relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven;
-    ImageView comOne, comTwo, comThree, comFour, comFive, comSix, comSeven;
-    Mood mMood = new Mood();
-    Map<Integer, Integer> moodTable = new HashMap<>(); // <Day's key, Mood's number>
-    RelativeLayout[] relativeList;
-    //Map<Integer,  String> comTable = new HashMap<>(); // <Day's key, Comment>
-
+    private ImageView comOne, comTwo, comThree, comFour, comFive, comSix, comSeven;
+    private Calendar mCalendar = Calendar.getInstance();
+    private int dayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        moodTable.put(0, 3);
-        moodTable.put(1, 0);
-        moodTable.put(2, 1);
-        moodTable.put(3, 4);
-        moodTable.put(4, 3);
-        moodTable.put(5, 2);
-        moodTable.put(6, 4);
+        SharedPreferences mPreferences = getPreferences(MODE_PRIVATE);
+
+        // Test en dur :
+        mPreferences.edit().putInt(String.valueOf(dayOfYear - 1) + " mood", 3).apply();
+        mPreferences.edit().putInt(String.valueOf(dayOfYear - 2) + " mood", 0).apply();
+        mPreferences.edit().putInt(String.valueOf(dayOfYear - 3) + " mood", 1).apply();
+        mPreferences.edit().putInt(String.valueOf(dayOfYear - 4) + " mood", 4).apply();
+        mPreferences.edit().putInt(String.valueOf(dayOfYear - 5) + " mood", 3).apply();
+        mPreferences.edit().putInt(String.valueOf(dayOfYear - 6) + " mood", 2).apply();
+        mPreferences.edit().putInt(String.valueOf(dayOfYear - 7) + " mood", 4).apply();
+
+        RelativeLayout relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven;
+        RelativeLayout[] relativeList;
+        int[] moodTable = {mPreferences.getInt(String.valueOf(dayOfYear - 1) + " mood", 5),
+                           mPreferences.getInt(String.valueOf(dayOfYear - 2) + " mood", 5),
+                           mPreferences.getInt(String.valueOf(dayOfYear - 3) + " mood", 5),
+                           mPreferences.getInt(String.valueOf(dayOfYear - 4) + " mood", 5),
+                           mPreferences.getInt(String.valueOf(dayOfYear - 5) + " mood", 5),
+                           mPreferences.getInt(String.valueOf(dayOfYear - 6) + " mood", 5),
+                           mPreferences.getInt(String.valueOf(dayOfYear - 7) + " mood", 5)};
 
         relativeOne = findViewById(R.id.activity_history_relative_one);
         relativeTwo = findViewById(R.id.activity_history_relative_two);
@@ -56,9 +64,13 @@ public class HistoryActivity extends AppCompatActivity {
 
         relativeList = new RelativeLayout[]{relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven};
 
-        for(int i = 0; i < moodTable.size(); i++) {
-            updateLayout(relativeList[i], moodTable.get(i));
+        for(int i = 0; i < 7; i++) {
+            updateLayout(relativeList[i], moodTable[i]);
         }
+
+        /*for(int i = 0; i < 7; i++) {
+            clickComment();
+        }*/
 
     }
 
@@ -105,7 +117,6 @@ public class HistoryActivity extends AppCompatActivity {
 
 
     private void clickComment(ImageView comButton, final String comString) {
-
         comButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.fleury.marc.moodtracker.R;
 import com.fleury.marc.moodtracker.model.MoodEnum;
@@ -21,6 +22,8 @@ import java.util.Calendar;
 public class MainActivity extends FragmentActivity {
 
     private SharedPreferences mPreferences;
+    private Calendar mCalendar = Calendar.getInstance();
+    private int dayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,14 @@ public class MainActivity extends FragmentActivity {
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         pager.setCurrentItem(3);
 
-        nextDay(); // NullPointerException : SharedPreferences
+        nextDay();
 
+        Log.i("Day of Year", String.valueOf(dayOfYear));
+
+        Log.i("Year Test", String.valueOf(dayOfYear) + " comment");
+        Log.i("Year Test", String.valueOf(dayOfYear) + " mood");
+
+        mPreferences.edit().putInt(String.valueOf(dayOfYear) + " comment", 1).apply();
 
     }
 
@@ -49,14 +58,24 @@ public class MainActivity extends FragmentActivity {
         public Fragment getItem(int pos) {
             switch (pos) {
                 case 0:
+                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.SAD.getMood()).apply();
+                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return SadFragment.newInstance();
                 case 1:
+                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.DISAPPOINTED.getMood()).apply();
+                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return DisappointedFragment.newInstance();
                 case 2:
+                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.NORMAL.getMood()).apply();
+                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return NormalFragment.newInstance();
                 case 3:
+                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.HAPPY.getMood()).apply();
+                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return HappyFragment.newInstance();
                 case 4:
+                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.SUPERHAPPY.getMood()).apply();
+                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return SuperHappyFragment.newInstance();
                 default:
                     return HappyFragment.newInstance();
@@ -73,17 +92,15 @@ public class MainActivity extends FragmentActivity {
     private void nextDay() {
 
         if (mPreferences.getInt("date", 0) == 0) { // If "date" == 0 : it's empty
-            mPreferences.edit().putInt("date", Calendar.DAY_OF_YEAR).apply();
+            mPreferences.edit().putInt("date", dayOfYear).apply();
         } else {
-            mPreferences.edit().putInt("currentDate", Calendar.DAY_OF_YEAR).apply();
+            mPreferences.edit().putInt("currentDate", dayOfYear).apply();
         }
 
         if (mPreferences.getInt("date", 0) < mPreferences.getInt("currentDay", 0)) { // If it's next day :
-            // Sending out mPreferences.getInt("mood", 5) to the Hashmap of HistoryActivity on position 0
-            // Stocking the comment
-            mPreferences.edit().remove("mood").apply(); // Clearing variable "mood"
-            mPreferences.edit().remove("comment").apply(); // Clearing variable "comment"
-            mPreferences.edit().putInt("date", mPreferences.getInt("currentDate", 0));
+            mPreferences.edit().remove(String.valueOf(dayOfYear - 8) + " mood").apply();
+            mPreferences.edit().putInt("date", mPreferences.getInt("currentDate", 0)).apply();
+            mPreferences.edit().remove("currentDate").apply();
         } else {
             // Nothing
         }
