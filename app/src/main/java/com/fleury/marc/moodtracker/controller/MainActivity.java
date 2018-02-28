@@ -37,14 +37,6 @@ public class MainActivity extends FragmentActivity {
         pager.setCurrentItem(3);
 
         nextDay();
-
-        Log.i("Day of Year", String.valueOf(dayOfYear));
-
-        Log.i("Year Test", String.valueOf(dayOfYear) + " comment");
-        Log.i("Year Test", String.valueOf(dayOfYear) + " mood");
-
-        mPreferences.edit().putInt(String.valueOf(dayOfYear) + " comment", 1).apply();
-
     }
 
 
@@ -91,7 +83,7 @@ public class MainActivity extends FragmentActivity {
 
     private void nextDay() {
 
-        if (mPreferences.getInt("date", 0) == 0) { // If "date" == 0 : it's empty
+        if (mPreferences.getInt("date", 0) == 0) { // If "date" == 0 : first launch
             mPreferences.edit().putInt("date", dayOfYear).apply();
         } else {
             mPreferences.edit().putInt("currentDate", dayOfYear).apply();
@@ -99,11 +91,9 @@ public class MainActivity extends FragmentActivity {
 
         if (mPreferences.getInt("date", 0) < mPreferences.getInt("currentDay", 0)) { // If it's next day :
             mPreferences.edit().remove(String.valueOf(dayOfYear - 8) + " mood").apply();
+            mPreferences.edit().remove(String.valueOf(dayOfYear - 8) + " comment").apply();
             mPreferences.edit().putInt("date", mPreferences.getInt("currentDate", 0)).apply();
             mPreferences.edit().remove("currentDate").apply();
-        } else {
-            // Nothing
         }
     }
-
 }

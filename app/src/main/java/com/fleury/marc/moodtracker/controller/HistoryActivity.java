@@ -16,7 +16,6 @@ import java.util.Calendar;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    private ImageView comOne, comTwo, comThree, comFour, comFive, comSix, comSeven;
     private Calendar mCalendar = Calendar.getInstance();
     private int dayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
 
@@ -27,7 +26,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         SharedPreferences mPreferences = getPreferences(MODE_PRIVATE);
 
-        // Test en dur :
+        // ****************************** TEST EN DUR : ******************************
         mPreferences.edit().putInt(String.valueOf(dayOfYear - 1) + " mood", 3).apply();
         mPreferences.edit().putInt(String.valueOf(dayOfYear - 2) + " mood", 0).apply();
         mPreferences.edit().putInt(String.valueOf(dayOfYear - 3) + " mood", 1).apply();
@@ -36,15 +35,33 @@ public class HistoryActivity extends AppCompatActivity {
         mPreferences.edit().putInt(String.valueOf(dayOfYear - 6) + " mood", 2).apply();
         mPreferences.edit().putInt(String.valueOf(dayOfYear - 7) + " mood", 4).apply();
 
+        // ****************************** TEST EN DUR : ******************************
+        mPreferences.edit().putString(String.valueOf(dayOfYear - 1) + " comment", "Test hier").apply();
+        mPreferences.edit().putString(String.valueOf(dayOfYear - 3) + " comment", "Test il y a 3 jours").apply();
+        mPreferences.edit().putString(String.valueOf(dayOfYear - 6) + " comment", "Test il y a 6 jours").apply();
+
+
         RelativeLayout relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven;
         RelativeLayout[] relativeList;
+        ImageView comOne, comTwo, comThree, comFour, comFive, comSix, comSeven;
+        ImageView[] buttonList;
+
         int[] moodTable = {mPreferences.getInt(String.valueOf(dayOfYear - 1) + " mood", 5),
-                           mPreferences.getInt(String.valueOf(dayOfYear - 2) + " mood", 5),
-                           mPreferences.getInt(String.valueOf(dayOfYear - 3) + " mood", 5),
-                           mPreferences.getInt(String.valueOf(dayOfYear - 4) + " mood", 5),
-                           mPreferences.getInt(String.valueOf(dayOfYear - 5) + " mood", 5),
-                           mPreferences.getInt(String.valueOf(dayOfYear - 6) + " mood", 5),
-                           mPreferences.getInt(String.valueOf(dayOfYear - 7) + " mood", 5)};
+                            mPreferences.getInt(String.valueOf(dayOfYear - 2) + " mood", 5),
+                            mPreferences.getInt(String.valueOf(dayOfYear - 3) + " mood", 5),
+                            mPreferences.getInt(String.valueOf(dayOfYear - 4) + " mood", 5),
+                            mPreferences.getInt(String.valueOf(dayOfYear - 5) + " mood", 5),
+                            mPreferences.getInt(String.valueOf(dayOfYear - 6) + " mood", 5),
+                            mPreferences.getInt(String.valueOf(dayOfYear - 7) + " mood", 5)};
+
+        String[] comTable = {mPreferences.getString(String.valueOf(dayOfYear - 1) + " comment", "none"),
+                            mPreferences.getString(String.valueOf(dayOfYear - 2) + " comment", "none"),
+                            mPreferences.getString(String.valueOf(dayOfYear - 3) + " comment", "none"),
+                            mPreferences.getString(String.valueOf(dayOfYear - 4) + " comment", "none"),
+                            mPreferences.getString(String.valueOf(dayOfYear - 5) + " comment", "none"),
+                            mPreferences.getString(String.valueOf(dayOfYear - 6) + " comment", "none"),
+                            mPreferences.getString(String.valueOf(dayOfYear - 7) + " comment", "none")};
+
 
         relativeOne = findViewById(R.id.activity_history_relative_one);
         relativeTwo = findViewById(R.id.activity_history_relative_two);
@@ -54,6 +71,8 @@ public class HistoryActivity extends AppCompatActivity {
         relativeSix = findViewById(R.id.activity_history_relative_six);
         relativeSeven = findViewById(R.id.activity_history_relative_seven);
 
+        relativeList = new RelativeLayout[]{relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven};
+
         comOne = findViewById(R.id.activity_history_com_one);
         comTwo = findViewById(R.id.activity_history_com_two);
         comThree = findViewById(R.id.activity_history_com_three);
@@ -62,15 +81,15 @@ public class HistoryActivity extends AppCompatActivity {
         comSix = findViewById(R.id.activity_history_com_six);
         comSeven = findViewById(R.id.activity_history_com_seven);
 
-        relativeList = new RelativeLayout[]{relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven};
+        buttonList = new ImageView[]{comOne, comTwo, comThree, comFour, comFive, comSix, comSeven};
 
         for(int i = 0; i < 7; i++) {
             updateLayout(relativeList[i], moodTable[i]);
         }
 
-        /*for(int i = 0; i < 7; i++) {
-            clickComment();
-        }*/
+        for(int i = 0; i < 7; i++) {
+            updateComButton(buttonList[i], comTable[i]);
+        }
 
     }
 
@@ -115,16 +134,18 @@ public class HistoryActivity extends AppCompatActivity {
 
     }
 
+    private void updateComButton(ImageView comButton, final String comment) {
+        if(comment != "none") {
+            comButton.setVisibility(View.VISIBLE);
 
-    private void clickComment(ImageView comButton, final String comString) {
-        comButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // User clicked the comment button
-                Toast.makeText(HistoryActivity.this, comString, Toast.LENGTH_SHORT).show();
-            }
-        });
-
+            comButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // User clicked the comment button
+                    Toast.makeText(HistoryActivity.this, comment, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
 }
