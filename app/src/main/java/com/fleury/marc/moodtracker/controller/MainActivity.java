@@ -7,10 +7,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 import com.fleury.marc.moodtracker.R;
-import com.fleury.marc.moodtracker.model.MoodEnum;
 import com.fleury.marc.moodtracker.view.DisappointedFragment;
 import com.fleury.marc.moodtracker.view.HappyFragment;
 import com.fleury.marc.moodtracker.view.NormalFragment;
@@ -50,24 +48,14 @@ public class MainActivity extends FragmentActivity {
         public Fragment getItem(int pos) {
             switch (pos) {
                 case 0:
-                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.SAD.getMood()).apply();
-                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return SadFragment.newInstance();
                 case 1:
-                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.DISAPPOINTED.getMood()).apply();
-                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return DisappointedFragment.newInstance();
                 case 2:
-                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.NORMAL.getMood()).apply();
-                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return NormalFragment.newInstance();
                 case 3:
-                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.HAPPY.getMood()).apply();
-                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return HappyFragment.newInstance();
                 case 4:
-                    mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.SUPERHAPPY.getMood()).apply();
-                    Log.i("MoodTest", String.valueOf(mPreferences.getInt("mood", 5)));
                     return SuperHappyFragment.newInstance();
                 default:
                     return HappyFragment.newInstance();
