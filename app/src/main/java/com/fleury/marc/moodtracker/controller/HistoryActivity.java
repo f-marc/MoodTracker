@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class HistoryActivity extends AppCompatActivity {
 
     private Calendar mCalendar = Calendar.getInstance();
-    private int dayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
+    private int mDay = mCalendar.get(Calendar.YEAR) + mCalendar.get(Calendar.DAY_OF_YEAR);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +27,18 @@ public class HistoryActivity extends AppCompatActivity {
         SharedPreferences mPreferences = getPreferences(MODE_PRIVATE);
 
         // ****************************** TEST EN DUR : ******************************
-        mPreferences.edit().putInt(String.valueOf(dayOfYear - 1) + " mood", 3).apply();
-        mPreferences.edit().putInt(String.valueOf(dayOfYear - 2) + " mood", 0).apply();
-        mPreferences.edit().putInt(String.valueOf(dayOfYear - 3) + " mood", 1).apply();
-        mPreferences.edit().putInt(String.valueOf(dayOfYear - 4) + " mood", 4).apply();
-        mPreferences.edit().putInt(String.valueOf(dayOfYear - 5) + " mood", 3).apply();
-        mPreferences.edit().putInt(String.valueOf(dayOfYear - 6) + " mood", 2).apply();
-        mPreferences.edit().putInt(String.valueOf(dayOfYear - 7) + " mood", 4).apply();
+        mPreferences.edit().putInt(String.valueOf(mDay - 1) + " mood", 3).apply();
+        mPreferences.edit().putInt(String.valueOf(mDay - 2) + " mood", 0).apply();
+        //mPreferences.edit().putInt(String.valueOf(mDay - 3) + " mood", 1).apply();
+        mPreferences.edit().putInt(String.valueOf(mDay - 4) + " mood", 4).apply();
+        //mPreferences.edit().putInt(String.valueOf(mDay - 5) + " mood", 3).apply();
+        //mPreferences.edit().putInt(String.valueOf(mDay - 6) + " mood", 2).apply();
+        mPreferences.edit().putInt(String.valueOf(mDay - 7) + " mood", 2).apply();
 
         // ****************************** TEST EN DUR : ******************************
-        mPreferences.edit().putString(String.valueOf(dayOfYear - 1) + " comment", "Test hier").apply();
-        mPreferences.edit().putString(String.valueOf(dayOfYear - 3) + " comment", "Test il y a 3 jours").apply();
-        mPreferences.edit().putString(String.valueOf(dayOfYear - 6) + " comment", "Test il y a 6 jours").apply();
+        mPreferences.edit().putString(String.valueOf(mDay - 1) + " comment", "Test hier").apply();
+        mPreferences.edit().putString(String.valueOf(mDay - 3) + " comment", "Test il y a 3 jours").apply();
+        mPreferences.edit().putString(String.valueOf(mDay - 6) + " comment", "Test il y a 6 jours").apply();
 
 
         RelativeLayout relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven;
@@ -46,21 +46,23 @@ public class HistoryActivity extends AppCompatActivity {
         ImageView comOne, comTwo, comThree, comFour, comFive, comSix, comSeven;
         ImageView[] buttonList;
 
-        int[] moodTable = {mPreferences.getInt(String.valueOf(dayOfYear - 1) + " mood", 5),
-                            mPreferences.getInt(String.valueOf(dayOfYear - 2) + " mood", 5),
-                            mPreferences.getInt(String.valueOf(dayOfYear - 3) + " mood", 5),
-                            mPreferences.getInt(String.valueOf(dayOfYear - 4) + " mood", 5),
-                            mPreferences.getInt(String.valueOf(dayOfYear - 5) + " mood", 5),
-                            mPreferences.getInt(String.valueOf(dayOfYear - 6) + " mood", 5),
-                            mPreferences.getInt(String.valueOf(dayOfYear - 7) + " mood", 5)};
+        // List of the seven past moods.
+        int[] moodTable = {mPreferences.getInt(String.valueOf(mDay - 1) + " mood", 5),
+                mPreferences.getInt(String.valueOf(mDay - 2) + " mood", 5),
+                mPreferences.getInt(String.valueOf(mDay - 3) + " mood", 5),
+                mPreferences.getInt(String.valueOf(mDay - 4) + " mood", 5),
+                mPreferences.getInt(String.valueOf(mDay - 5) + " mood", 5),
+                mPreferences.getInt(String.valueOf(mDay - 6) + " mood", 5),
+                mPreferences.getInt(String.valueOf(mDay - 7) + " mood", 5)};
 
-        String[] comTable = {mPreferences.getString(String.valueOf(dayOfYear - 1) + " comment", "none"),
-                            mPreferences.getString(String.valueOf(dayOfYear - 2) + " comment", "none"),
-                            mPreferences.getString(String.valueOf(dayOfYear - 3) + " comment", "none"),
-                            mPreferences.getString(String.valueOf(dayOfYear - 4) + " comment", "none"),
-                            mPreferences.getString(String.valueOf(dayOfYear - 5) + " comment", "none"),
-                            mPreferences.getString(String.valueOf(dayOfYear - 6) + " comment", "none"),
-                            mPreferences.getString(String.valueOf(dayOfYear - 7) + " comment", "none")};
+        // List of the seven past comments.
+        String[] comTable = {mPreferences.getString(String.valueOf(mDay - 1) + " comment", "none"),
+                mPreferences.getString(String.valueOf(mDay - 2) + " comment", "none"),
+                mPreferences.getString(String.valueOf(mDay - 3) + " comment", "none"),
+                mPreferences.getString(String.valueOf(mDay - 4) + " comment", "none"),
+                mPreferences.getString(String.valueOf(mDay - 5) + " comment", "none"),
+                mPreferences.getString(String.valueOf(mDay - 6) + " comment", "none"),
+                mPreferences.getString(String.valueOf(mDay - 7) + " comment", "none")};
 
 
         relativeOne = findViewById(R.id.activity_history_relative_one);
@@ -71,6 +73,7 @@ public class HistoryActivity extends AppCompatActivity {
         relativeSix = findViewById(R.id.activity_history_relative_six);
         relativeSeven = findViewById(R.id.activity_history_relative_seven);
 
+        // List of the seven layouts.
         relativeList = new RelativeLayout[]{relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven};
 
         comOne = findViewById(R.id.activity_history_com_one);
@@ -81,71 +84,68 @@ public class HistoryActivity extends AppCompatActivity {
         comSix = findViewById(R.id.activity_history_com_six);
         comSeven = findViewById(R.id.activity_history_com_seven);
 
+        // List of the seven comment buttons.
         buttonList = new ImageView[]{comOne, comTwo, comThree, comFour, comFive, comSix, comSeven};
 
+        // Updating of all relative layouts.
         for(int i = 0; i < 7; i++) {
-            updateLayout(relativeList[i], moodTable[i]);
+            if (moodTable[i] != 5) { // If there is a mood :
+                updateLayout(relativeList[i], moodTable[i]);
+            }
         }
 
+        // Updating of all comment buttons.
         for(int i = 0; i < 7; i++) {
-            updateComButton(buttonList[i], comTable[i]);
+            if(comTable[i] != "none" && comTable[i] != "") { // If there is a comment :
+                updateComButton(buttonList[i], comTable[i]);
+            }
         }
-
     }
 
 
+    // Method for updating layouts :
     private void updateLayout(RelativeLayout relativeLayout, int mood) {
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) relativeLayout.getLayoutParams();
 
         switch(mood){
-            case 0:
-                params.width = ((metrics.widthPixels * 20) / 100);
-                relativeLayout.setLayoutParams(params);
-                relativeLayout.setBackgroundColor(getResources().getColor(R.color.faded_red));
-                relativeLayout.setVisibility(View.VISIBLE);
+            case 0: // If mood = "Sad" :
+                params.width = ((metrics.widthPixels * 20) / 100); // The layout is displayed on 1/5 of the screen width ...
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.faded_red)); // ... And its background is set to red.
                 break;
-            case 1:
-                params.width = ((metrics.widthPixels * 40) / 100);
-                relativeLayout.setLayoutParams(params);
-                relativeLayout.setBackgroundColor(getResources().getColor(R.color.warm_grey));
-                relativeLayout.setVisibility(View.VISIBLE);
+            case 1: // If mood = "Disappointed" :
+                params.width = ((metrics.widthPixels * 40) / 100); // The layout is displayed on 2/5 of the screen width ...
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.warm_grey)); // ... And its background is set to grey.
                 break;
-            case 2:
-                params.width = ((metrics.widthPixels * 60) / 100);
-                relativeLayout.setLayoutParams(params);
-                relativeLayout.setBackgroundColor(getResources().getColor(R.color.cornflower_blue_65));
-                relativeLayout.setVisibility(View.VISIBLE);
+            case 2: // If mood = "Normal" :
+                params.width = ((metrics.widthPixels * 60) / 100); // The layout is displayed on 3/5 of the screen width ...
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.cornflower_blue_65)); // ... And its background is set to blue.
                 break;
-            case 3:
-                params.width = ((metrics.widthPixels * 80) / 100);
-                relativeLayout.setLayoutParams(params);
-                relativeLayout.setBackgroundColor(getResources().getColor(R.color.light_sage));
-                relativeLayout.setVisibility(View.VISIBLE);
+            case 3: // If mood = "Happy" :
+                params.width = ((metrics.widthPixels * 80) / 100); // The layout is displayed on 4/5 of the screen width ...
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.light_sage)); // ... And its background is set to green.
                 break;
-            case 4:
-                params.width = metrics.widthPixels;
-                relativeLayout.setLayoutParams(params);
-                relativeLayout.setBackgroundColor(getResources().getColor(R.color.banana_yellow));
-                relativeLayout.setVisibility(View.VISIBLE);
+            case 4: // If mood = "SuperHappy" :
+                params.width = metrics.widthPixels; // The layout is displayed on all of the screen width ...
+                relativeLayout.setBackgroundColor(getResources().getColor(R.color.banana_yellow)); // ... And its background is set to yellow.
                 break;
         }
-
+        relativeLayout.setLayoutParams(params);
+        relativeLayout.setVisibility(View.VISIBLE);
     }
 
+
+    // Method for updating comment button's ImageViews.
     private void updateComButton(ImageView comButton, final String comment) {
-        if(comment != "none") {
-            comButton.setVisibility(View.VISIBLE);
+        comButton.setVisibility(View.VISIBLE); // The associated icon is displayed.
 
-            comButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // User clicked the comment button
-                    Toast.makeText(HistoryActivity.this, comment, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+        comButton.setOnClickListener(new View.OnClickListener() { // If the user clicked the icon, then the comment is displayed by a toast message.
+            @Override
+            public void onClick(View v) {
+                // User clicked the comment button.
+                Toast.makeText(HistoryActivity.this, comment, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
 }

@@ -18,7 +18,7 @@ public class MyDialogFragment extends DialogFragment {
 
     private SharedPreferences mPreferences;
     private Calendar mCalendar = Calendar.getInstance();
-    private int dayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
+    private int mDay = mCalendar.get(Calendar.YEAR) + mCalendar.get(Calendar.DAY_OF_YEAR);
 
     public static MyDialogFragment newInstance() {
         return new MyDialogFragment();
@@ -37,8 +37,8 @@ public class MyDialogFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         EditText mEditText = ((AlertDialog) dialog).findViewById(R.id.fragment_dialog_edit);
-                        mPreferences.edit().putString(String.valueOf(dayOfYear) + " comment", mEditText.getText().toString()).apply();
-                        Log.i("Test", mPreferences.getString(String.valueOf(dayOfYear) + " comment", "none"));
+                        mPreferences.edit().putString(String.valueOf(mDay) + " comment", mEditText.getText().toString()).apply();
+                        Log.i("Test", mPreferences.getString(String.valueOf(mDay) + " comment", "none"));
                         dialog.dismiss();
                     }
                 })
@@ -51,7 +51,5 @@ public class MyDialogFragment extends DialogFragment {
         });
 
         return alertDialogBuilder.create();
-
     }
-
 }

@@ -20,7 +20,7 @@ import com.fleury.marc.moodtracker.model.MoodEnum;
 
 import java.util.Calendar;
 
-public class HappyFragment extends Fragment {
+public class MoodFragment extends Fragment {
 
 
     public static HappyFragment newInstance() {

@@ -3,7 +3,9 @@ package com.fleury.marc.moodtracker.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -25,20 +27,16 @@ public class NormalFragment extends Fragment {
         return new NormalFragment();
     }
 
+    private SharedPreferences mPreferences;
     private Calendar mCalendar = Calendar.getInstance();
-    private int dayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
+    private int mDay = mCalendar.get(Calendar.YEAR) + mCalendar.get(Calendar.DAY_OF_YEAR);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_normal, container, false);
 
-        SharedPreferences mPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-
         ImageView mHistoryButton = v.findViewById(R.id.fragment_normal_hist);
         ImageView mComButton = v.findViewById(R.id.fragment_normal_com);
-
-        mPreferences.edit().putInt(String.valueOf(dayOfYear) + " mood", MoodEnum.NORMAL.getMood()).apply();
-        Log.i("MoodTest", String.valueOf(mPreferences.getInt(String.valueOf(dayOfYear) + " mood", 5)));
 
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +59,40 @@ public class NormalFragment extends Fragment {
     }
 
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+    }
+
     private void showAlertDialog() {
         FragmentManager fm = getFragmentManager();
         MyDialogFragment alertDialog = MyDialogFragment.newInstance();
         alertDialog.show(fm, "fragment_alert");
     }
 
+
+    // Method for saving the current mood and producing an associated sound.
+    @Override
+    public void setUserVisibleHint (boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && mPreferences != null) { // If the fragment is visible :
+            saveMood(); // The mood is saved ...
+            playSound(); // ... And the sound is played.
+        }
+    }
+
+
+    // Method for saving mood.
+    public void saveMood() {
+        mPreferences.edit().putInt(String.valueOf(mDay) + " mood", MoodEnum.NORMAL.getMood()).apply();
+        Log.i("MoodTest", String.valueOf(mPreferences.getInt(String.valueOf(mDay) + " mood", 5)));
+    }
+
+
+    // Method for playing a sound.
+    public void playSound() {
+        MediaPlayer mSound = MediaPlayer.create(getActivity(), R.raw.g2);
+        mSound.start();
+    }
 }
