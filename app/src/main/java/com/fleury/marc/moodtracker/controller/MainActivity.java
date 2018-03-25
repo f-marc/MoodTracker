@@ -16,7 +16,7 @@ import java.util.Calendar;
 
 public class MainActivity extends FragmentActivity {
 
-    SharedPreferences mPreferences;
+    private SharedPreferences mPreferences;
     private Calendar mCalendar = Calendar.getInstance();
     private int mDay = mCalendar.get(Calendar.YEAR) + mCalendar.get(Calendar.DAY_OF_YEAR);
 
@@ -68,21 +68,23 @@ public class MainActivity extends FragmentActivity {
 
     // Method for detecting day change :
     private void nextDay() {
-
         if (mPreferences.getInt("date", 0) == 0) { // If "date" == 0 : first launch
             mPreferences.edit().putInt("date", mDay).apply();
         } else {
             mPreferences.edit().putInt("currentDate", mDay).apply();
         }
 
-        if (mPreferences.getInt("date", 0) < mPreferences.getInt("currentDay", 0)) { // If it's next day :
+        int date = mPreferences.getInt("date", 0);
+        int currentDate = mPreferences.getInt("currentDate", 0);
+
+        if (date < currentDate) { // If it's next day :
             for(int i = 1; i < 359; i++) {
                 if (mPreferences.getInt(String.valueOf(mDay - (8 + i)) + " mood", 5) != 5) {
                     mPreferences.edit().remove(String.valueOf(mDay - (8 + i)) + " mood").apply(); // We delete all useless mood's preferences ...
                     mPreferences.edit().remove(String.valueOf(mDay - (8 + i)) + " comment").apply(); // ... And same for comment's ones.
                 }
             }
-            mPreferences.edit().putInt("date", mPreferences.getInt("currentDate", 0)).apply();
+            mPreferences.edit().putInt("date", mDay).apply();
             mPreferences.edit().remove("currentDate").apply();
         }
     }

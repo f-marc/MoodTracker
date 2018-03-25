@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.widget.EditText;
 
 import com.fleury.marc.moodtracker.R;
@@ -38,17 +37,16 @@ public class MyDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         EditText mEditText = ((AlertDialog) dialog).findViewById(R.id.fragment_dialog_edit);
                         mPreferences.edit().putString(String.valueOf(mDay) + " comment", mEditText.getText().toString()).apply();
-                        Log.i("Test", mPreferences.getString(String.valueOf(mDay) + " comment", "none"));
                         dialog.dismiss();
                     }
                 })
                 .setNegativeButton(R.string.negative_btn, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
 
-        });
+                });
 
         return alertDialogBuilder.create();
     }

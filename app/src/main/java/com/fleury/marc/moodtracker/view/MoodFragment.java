@@ -3,13 +3,11 @@ package com.fleury.marc.moodtracker.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +19,9 @@ import com.fleury.marc.moodtracker.controller.HistoryActivity;
 import com.fleury.marc.moodtracker.model.MoodEnum;
 
 import java.util.Calendar;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MoodFragment extends Fragment {
 
@@ -39,19 +40,19 @@ public class MoodFragment extends Fragment {
     private Calendar mCalendar = Calendar.getInstance();
     private int mDay = mCalendar.get(Calendar.YEAR) + mCalendar.get(Calendar.DAY_OF_YEAR);
 
+    @BindView(R.id.fragment_mood) RelativeLayout mLayout;
+    @BindView(R.id.fragment_mood_view) ImageView mSmiley;
+    @BindView(R.id.fragment_mood_hist) ImageView mHistoryButton;
+    @BindView(R.id.fragment_mood_com) ImageView mComButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_mood, container, false);
+        ButterKnife.bind(this, v);
 
         MoodEnum mood = (MoodEnum) getArguments().getSerializable(EXTRA_MOOD);
 
-        RelativeLayout mLayout = v.findViewById(R.id.fragment_mood);
-        ImageView mSmiley = v.findViewById(R.id.fragment_mood_view);
-        ImageView mHistoryButton = v.findViewById(R.id.fragment_mood_hist);
-        ImageView mComButton = v.findViewById(R.id.fragment_mood_com);
-
         updateLayout(mood, mLayout, mSmiley);
-
         saveMood(mood, mSmiley);
 
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
@@ -74,27 +75,28 @@ public class MoodFragment extends Fragment {
     }
 
 
+    // Method for displaying the correct components.
     public void updateLayout(MoodEnum mood, RelativeLayout mLayout, ImageView mSmiley) {
         switch(mood) {
-            case SAD:
-                mLayout.setBackgroundColor(getResources().getColor(R.color.faded_red));
-                mSmiley.setImageResource(R.drawable.smiley_sad);
+            case SAD: // If mood = "Sad" :
+                mLayout.setBackgroundColor(getResources().getColor(R.color.faded_red)); // The background is set to red...
+                mSmiley.setImageResource(R.drawable.smiley_sad); // ... And the associated image is displayed.
                 break;
-            case DISAPPOINTED:
-                mLayout.setBackgroundColor(getResources().getColor(R.color.warm_grey));
-                mSmiley.setImageResource(R.drawable.smiley_disappointed);
+            case DISAPPOINTED: // If mood = "Disappointed" :
+                mLayout.setBackgroundColor(getResources().getColor(R.color.warm_grey)); // The background is set to grey...
+                mSmiley.setImageResource(R.drawable.smiley_disappointed); // ... And the associated image is displayed.
                 break;
-            case NORMAL:
-                mLayout.setBackgroundColor(getResources().getColor(R.color.cornflower_blue_65));
-                mSmiley.setImageResource(R.drawable.smiley_normal);
+            case NORMAL: // If mood = "Normal" :
+                mLayout.setBackgroundColor(getResources().getColor(R.color.cornflower_blue_65)); // The background is set to blue...
+                mSmiley.setImageResource(R.drawable.smiley_normal); // ... And the associated image is displayed.
                 break;
-            case HAPPY:
-                mLayout.setBackgroundColor(getResources().getColor(R.color.light_sage));
-                mSmiley.setImageResource(R.drawable.smiley_happy);
+            case HAPPY: // If mood = "Happy" :
+                mLayout.setBackgroundColor(getResources().getColor(R.color.light_sage)); // The background is set to green...
+                mSmiley.setImageResource(R.drawable.smiley_happy); // ... And the associated image is displayed.
                 break;
-            case SUPERHAPPY:
-                mLayout.setBackgroundColor(getResources().getColor(R.color.banana_yellow));
-                mSmiley.setImageResource(R.drawable.smiley_super_happy);
+            case SUPERHAPPY: // If mood = "SuperHappy" :
+                mLayout.setBackgroundColor(getResources().getColor(R.color.banana_yellow)); // The background is set to yellow...
+                mSmiley.setImageResource(R.drawable.smiley_super_happy); // ... And the associated image is displayed.
                 break;
         }
     }
@@ -142,7 +144,6 @@ public class MoodFragment extends Fragment {
                         mSound = MediaPlayer.create(getActivity(), R.raw.g4);
                         break;
                 }
-                Log.i("MoodTest", String.valueOf(mPreferences.getInt(String.valueOf(mDay) + " mood", 5)));
                 mSound.start();
             }
         });
