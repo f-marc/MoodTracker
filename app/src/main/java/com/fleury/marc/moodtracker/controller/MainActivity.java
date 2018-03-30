@@ -25,7 +25,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mPreferences = getPreferences(MODE_PRIVATE);
+        mPreferences = this.getSharedPreferences("pref", MODE_PRIVATE);
 
         ViewPager pager = findViewById(R.id.viewPager);
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
@@ -79,9 +79,9 @@ public class MainActivity extends FragmentActivity {
 
         if (date < currentDate) { // If it's next day :
             for(int i = 1; i < 359; i++) {
-                if (mPreferences.getInt(String.valueOf(mDay - (8 + i)) + " mood", 5) != 5) {
-                    mPreferences.edit().remove(String.valueOf(mDay - (8 + i)) + " mood").apply(); // We delete all useless mood's preferences ...
-                    mPreferences.edit().remove(String.valueOf(mDay - (8 + i)) + " comment").apply(); // ... And same for comment's ones.
+                if (mPreferences.getInt(String.valueOf(mDay - (7 + i)) + " mood", 5) != 5) {
+                    mPreferences.edit().remove(String.valueOf(mDay - (7 + i)) + " mood").apply(); // We delete all useless mood's preferences ...
+                    mPreferences.edit().remove(String.valueOf(mDay - (7 + i)) + " comment").apply(); // ... And same for comment's ones.
                 }
             }
             mPreferences.edit().putInt("date", mDay).apply();

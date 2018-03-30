@@ -45,7 +45,7 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         ButterKnife.bind(this);
 
-        SharedPreferences mPreferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences mPreferences = this.getSharedPreferences("pref", MODE_PRIVATE);
 
         RelativeLayout[] relativeList = new RelativeLayout[]{relativeOne, relativeTwo, relativeThree, relativeFour, relativeFive, relativeSix, relativeSeven};
         ImageView[] buttonList = new ImageView[]{comOne, comTwo, comThree, comFour, comFive, comSix, comSeven};

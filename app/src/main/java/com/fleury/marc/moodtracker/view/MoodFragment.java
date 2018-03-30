@@ -1,6 +1,5 @@
 package com.fleury.marc.moodtracker.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -13,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.fleury.marc.moodtracker.R;
 import com.fleury.marc.moodtracker.controller.HistoryActivity;
@@ -22,6 +22,8 @@ import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MoodFragment extends Fragment {
 
@@ -105,7 +107,7 @@ public class MoodFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        mPreferences = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
     }
 
 
@@ -145,6 +147,7 @@ public class MoodFragment extends Fragment {
                         break;
                 }
                 mSound.start();
+                Toast.makeText(getActivity(), "Humeur sauvegardée", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -1,7 +1,6 @@
 package com.fleury.marc.moodtracker.view;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +11,8 @@ import android.widget.EditText;
 import com.fleury.marc.moodtracker.R;
 
 import java.util.Calendar;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MyDialogFragment extends DialogFragment {
 
@@ -26,7 +27,7 @@ public class MyDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        mPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        mPreferences = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
